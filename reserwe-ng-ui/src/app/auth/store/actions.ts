@@ -2,7 +2,7 @@ import {createAction, props, union} from '@ngrx/store';
 import {EAuthActions} from '../constants/constants';
 import {User} from '../model/user';
 
-export const login = createAction(EAuthActions.LOGIN, props<{ username: string, password: string }>());
+export const login = createAction(EAuthActions.LOGIN, props<{ username: string, password: string, companyId: string }>());
 export const loginSuccess = createAction(EAuthActions.LOGIN_SUCCESS, props<{ token: string }>());
 
 export const getLoggedUser = createAction(EAuthActions.GET_LOGGED_USER, props<{ userId: string }>());

@@ -1,18 +1,57 @@
+<!--<mat-card>-->
+<!--  <mat-card-content>-->
+<!--    <form [formGroup]="form">-->
+<!--      <h2>{{'auth.title' | translate}}</h2>-->
+<!--      <mat-form-field class="full-width-input">-->
+<!--        <input matInput placeholder="{{'auth.username' | translate}}" formControlName="username">-->
+<!--        <mat-error>-->
+<!--          {{'auth.error.username' | translate}}-->
+<!--        </mat-error>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field class="full-width-input">-->
+<!--        <input matInput type="password" placeholder="{{'auth.password' | translate}}" formControlName="password">-->
+<!--        <mat-error *ngIf="form.controls.password.hasError">-->
+<!--          {{'auth.error.password' | translate}}-->
+<!--        </mat-error>-->
+<!--      </mat-form-field>-->
+<!--      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="login()">{{'auth.action.login' | translate}}</button>-->
+<!--    </form>-->
+<!--  </mat-card-content>-->
+<!--</mat-card>-->
 <div class="login-page">
   <div class="gradient">
+    <div class="nt-fc-login-brand">
+      <div class="nt-fc-login-brand__content">
+        <!--        <h2>Welcome to</h2>-->
+        <!--        <div class="nt-fc-login-brand__divider"></div>-->
+        <!--        <img class=login-page__logo" src="../../../../../assets/images/logo.png">-->
+        <img class="login-page__logo" src="../../../../assets/images/logo.png">
+      </div>
+    </div>
+
+
     <div class="nt-login-card mat-elevation-z8">
       <div class="nt-login-card__content">
+        <!--        <div class="nt-login-icon">-->
+        <!--          <mat-icon>perm_identity</mat-icon>-->
+        <!--        </div>-->
+        <!--        <div class="nt-login-card__title">-->
+        <!--          <h5>{{"login.title" | translate}}</h5>-->
+        <!--        </div>-->
+        <div class="ngo-logo">
+          <a href="https://ngoffice.rs/" target="_blank">
+            <img class="ngo-logo__img" src="../../../../../../assets/images/ngo-logo.png"/>
+          </a>
+        </div>
         <form class="nt-login-form" [formGroup]="form">
           <mat-form-field class="login-field">
-            <input matInput type="text" formControlName="username" class="form-control"
-                   placeholder="{{'login.username.placeholder'| translate}}"/>
+            <input matInput type="text" formControlName="username" class="form-control" placeholder="{{'login.username.placeholder'| translate}}"/>
             <mat-error *ngIf="form.controls.username.errors" class="invalid-feedback">
               <span *ngIf="form.controls.username.errors.required">{{"login.username.error"| translate}}</span>
             </mat-error>
           </mat-form-field>
           <mat-form-field class="login-field">
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" class="form-control"
-                   placeholder="{{'login.password.placeholder'| translate}}"/>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" class="form-control" placeholder="{{'login.password.placeholder'| translate}}"/>
             <div
               style="cursor: pointer" matSuffix
               (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -25,15 +64,19 @@
           </mat-form-field>
           <mat-card-actions>
             <button mat-stroked-button color="primary" (click)="login()" class="login-field nt-login-btn">
-              <span class="parent">
-                <span>{{"login.button" | translate}}</span>
-              </span>
+          <span class="parent">
+<!--          <mat-icon *ngIf="(loading$ | async)">-->
+            <!--            <mat-spinner color="accent" diameter="20"></mat-spinner>-->
+            <!--          </mat-icon>-->
+          <span>{{"login.button" | translate}}</span>
+
+          </span>
             </button>
           </mat-card-actions>
         </form>
         <a class="nt-login-card__poweredby" href="https://plusplusnt.rs/" target="_blank">
-          <p>Powered by: </p>
-          <img class="login-page__logo-plusplus-nt" src="../../../../assets/images/plusplusnt-logo.png">
+          <p>Powered by:  </p>
+          <img  class="login-page__logo-plusplus-nt" src="../../../../assets/images/plusplusnt-logo.png">
         </a>
       </div>
     </div>

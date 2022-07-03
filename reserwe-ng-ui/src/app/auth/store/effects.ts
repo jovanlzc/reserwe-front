@@ -6,21 +6,27 @@ import {switchMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import * as AuthActions from './actions';
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
   constructor(private actions$: Actions,
               private store$: Store,
-              private authApi: AuthApi) {
+              private authApi: AuthApi,
+              private navigator: Router) {
   }
 
-  login$ = createEffect(() => this.actions$.pipe(
+  loginEffect$ = createEffect(() => this.actions$.pipe(
     ofType(EAuthActions.LOGIN),
-    switchMap((props: { username: string, password: string }) => this.authApi.login(props.username, props.password).pipe(
-      switchMap((data: any) => of(
-        AuthActions.loginSuccess({ticket: data.entry.id}),
-        AuthActions.getLoggedUser({userId: data.entry.userId}),
-        )
+    switchMap((props: { username: string, password: string, companyId: string }) => this.authApi.login(props.username, props.password, props.companyId).pipe(
+      switchMap((data: any) => {
+          console.log('Data', data.jwt);
+          this.navigator.navigate(['/']);
+          return of(
+            AuthActions.loginSuccess({token: data.jwt}),
+          )
+            ;
+        }
       )
       ),
     )));

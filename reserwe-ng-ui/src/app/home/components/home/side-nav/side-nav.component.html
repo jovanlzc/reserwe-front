@@ -1,0 +1,21 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [mode]="over" [(opened)]="opened" class="ngo-sidenav bottom-to-top">
+    <div class="ngo-logo mat-elevation-z3">
+      <a>
+        <img class="ngo-logo__img" src="../../../../assets/images/ngo-logo.png"/>
+      </a>
+    </div>
+
+    <mat-accordion multi="true" displayMode="flat">
+      <mat-nav-list class="ngo-single-list-item">
+        <a mat-list-item routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <mat-icon matListIcon>home</mat-icon>
+          {{"menu.home.title" | translate}}
+        </a>
+      </mat-nav-list>
+    </mat-accordion>
+
+  </mat-sidenav>
+</mat-sidenav-container>
+
+<!--NESTO-->

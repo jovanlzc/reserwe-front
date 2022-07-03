@@ -43,7 +43,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -60,7 +59,22 @@
                   "maximumError": "10kb"
                 }
               ]
-            }
+            },
+            "dev": {
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "namedChunks": true,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.prod.ts",
+                  "with": "src/environments/environment.ts"
+                }
+              ]}
           }
         },
         "serve": {
@@ -71,6 +85,9 @@
           "configurations": {
             "production": {
               "browserTarget": "reserwe-ng-ui:build:production"
+            },
+            "dev": {
+              "browserTarget": "reserwe-ng-ui:build:dev"
             }
           }
         },
@@ -123,6 +140,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "reserwe-ng-ui"
 }

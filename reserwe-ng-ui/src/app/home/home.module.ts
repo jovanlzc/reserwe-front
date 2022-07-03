@@ -1,8 +1,9 @@
 import {NgModule} from '@angular/core';
-import {LoginComponent} from './components/login/login.component';
+import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
-import {CommonModule} from '@angular/common';
+import {HomeComponent} from './components/home/home.component';
+import {SideNavComponent} from './components/home/side-nav/side-nav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -26,25 +27,26 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {StoreModule} from '@ngrx/store';
-import {authReducers} from './store/reducers';
-import {EffectsModule} from '@ngrx/effects';
-import {AuthEffects} from './store/effects';
-import {AuthApi} from './api/auth-api';
+import {RouterModule} from '@angular/router';
+import {HomeRoutingModule} from "./home-routing.module";
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [
+    HomeComponent,
+    SideNavComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule,
     TranslateModule,
+    HomeRoutingModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -74,15 +76,10 @@ import {AuthApi} from './api/auth-api';
     MatAutocompleteModule,
     MatChipsModule,
     MatTooltipModule,
-    StoreModule.forFeature('appAuth', authReducers),
-    EffectsModule.forFeature([AuthEffects]),
   ],
-  exports: [LoginComponent],
-  providers: [
-    AuthEffects,
-    AuthApi
-  ]
+  exports: [HomeComponent],
+  providers: []
 })
-export class AuthModule {
+export class HomeModule {
 
 }

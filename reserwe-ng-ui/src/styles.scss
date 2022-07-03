@@ -1,1 +1,155 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "variables";
+
+body {
+  margin: 0 !important;
+}
+
+.nt-content-container {
+  position: relative;
+  min-height: calc(100vh - 177px);
+  //router-outlet ~ * {
+  //  position: absolute;
+  //  width: 100%;
+  //  height: 100%;
+  //  //top: 0;
+  //  left: 0;
+  //}
+}
+
+
+.toast-top-center {
+  //top: 8% !important;
+  width: 100%;
+  top: 10px!important;
+}
+
+.toast-container .ngx-toastr {
+  min-width: 30%;
+  height: 80px;
+  opacity: 0.95 !important;
+  text-align: center;
+}
+
+.ngo-table {
+  overflow-x: auto;
+  table {
+    border-collapse: separate!important;
+  }
+  th {
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  td {
+    font-size: 15px;
+    padding-top: 8px!important;
+    padding-bottom: 8px!important;
+    button {
+      outline: none;
+    }
+  }
+  tr.mat-row.document-detail-row {
+    height: 0;
+    td {
+      padding-top: 0!important;
+      padding-bottom: 0!important;
+      .document-element-detail {
+        margin-bottom: 8px;
+        background-color: #f3f3f778;
+        .mat-list-base {
+          width: 100%;
+          padding: 16px 8px;
+          .mat-card-title {
+            padding-left: 8px;
+          }
+          tr td {
+            padding: 8px;
+          }
+          .mat-divider {
+            padding-bottom: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  tr.mat-row.shipment-detail-row {
+    height: 0;
+    td {
+      padding-top: 0!important;
+      padding-bottom: 0!important;
+      .shipment-element-detail {
+        margin-bottom: 8px;
+        background-color: #f3f3f778;
+        .mat-list-base {
+          width: 100%;
+          padding: 16px 8px;
+          .mat-card-title {
+            padding-left: 8px;
+          }
+          tr td {
+            padding: 8px;
+          }
+          .mat-divider {
+            padding-bottom: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ngo-paginator {
+  .mat-paginator-container {
+    justify-content: space-between;
+  }
+}
+
+.ngo-form-group {
+  padding: 18px;
+  mat-form-field {
+    width: 100%;
+  }
+
+}
+
+.ngo-form-group__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 28px 18px 18px;
+  margin-top: -32px;
+}
+
+//.ngo-searchDepartment-input {
+//  ::ng-deep .mat-form-field-prefix {
+//    width: 30px;
+//    height: 29px;
+//    .mat-icon {
+//      position: absolute;
+//      top: 11px;
+//      left: 0;
+//      opacity: .6;
+//    }
+//  }
+//
+//  ::ng-deep .mat-form-field-suffix {
+//    width: 24px;
+//    height: 29px;
+//    .mat-icon {
+//      position: absolute;
+//      top: 8px;
+//      opacity: .6;
+//      transition: opacity .2s;
+//      &:hover {
+//        opacity: .95;
+//      }
+//    }
+//  }
+//
+//  .clear-button {
+//    cursor: pointer;
+//  }
+//}
+
+
