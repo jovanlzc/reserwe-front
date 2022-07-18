@@ -16,8 +16,9 @@ import {
   TranslateModule
 } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {HomeModule} from "./home/home.module";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HomeModule} from './home/home.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -29,7 +30,6 @@ export class CustomMissingTranslationHandler implements MissingTranslationHandle
     return `${params.key}`;
   }
 }
-
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ export class CustomMissingTranslationHandler implements MissingTranslationHandle
     HomeModule,
     AuthModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     TranslateModule.forRoot({
       missingTranslationHandler: {
         provide: MissingTranslationHandler,

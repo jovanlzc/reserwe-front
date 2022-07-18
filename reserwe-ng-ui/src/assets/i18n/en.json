@@ -2,6 +2,70 @@
   "login": {
     "username": {
       "placeholder": "Username"
+    },
+    "password": {
+      "placeholder": "Password"
+    }
+  },
+  "menu": {
+    "home": {
+      "title": "Home"
+    },
+    "dashboard": {
+      "admin": "Admin",
+      "company": "Company",
+      "service": "Service",
+      "role": "Role",
+      "employee": "Employee",
+      "employee-add": "Add Employee",
+      "employee-list": "List of Employees",
+      "employee-category": "Employee Category",
+      "employee": {
+        "title": "Employee",
+        "category": {
+          "add": "Add Employee Category",
+          "list": "List of Employee Categories"
+        }
+      },
+      "service": {
+        "title": "Service",
+        "category": "Service Category",
+        "add": "Add Service",
+        "list": "List of Services"
+      }
+    }
+  },
+  "employee": {
+    "list": {
+      "title": "List of Employees",
+      "username": "Username",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email"
+    },
+    "add": {
+      "title": "Add Employee",
+      "username": "Username",
+      "password": "Password",
+      "email": "Email",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "employeeCategories": "Employee Categories"
+    },
+    "category": {
+      "add": {
+        "label": {
+          "name": "Name of Category"
+        },
+        "actions": {
+          "save": "Save"
+        },
+        "title": "Add Empoyee Category"
+      },
+      "list": {
+        "title": "List of Employee Categories",
+        "name": "Name"
+      }
     }
   }
 }

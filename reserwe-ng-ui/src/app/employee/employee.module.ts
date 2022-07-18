@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
-import {HomeComponent} from './components/home/home.component';
-import {SideNavComponent} from './components/home/side-nav/side-nav.component';
+import {AddEmployeeCategoryComponent} from './components/employee-category/add/add-employee-category.component';
+import {EmployeeRoutingModule} from './employee-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -33,20 +33,30 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {RouterModule} from '@angular/router';
-import {HomeRoutingModule} from './home-routing.module';
+import {AppCommonModule} from '../common/common.module';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {employeeReducers} from './store/reducers';
+import {EmployeeEffects} from './store/effects';
+import {ToastrModule} from 'ngx-toastr';
+import {EmployeeApi} from './api/employee-api';
+import {ListEmployeeCategoryComponent} from './components/employee-category/list/list-employee-category.component';
+import {ListEmployeeComponent} from './components/employee/list/list-employee.component';
+import {AddEmployeeComponent} from './components/employee/add/add-employee.component';
 
 @NgModule({
   declarations: [
-    HomeComponent,
-    SideNavComponent
+    AddEmployeeCategoryComponent,
+    ListEmployeeCategoryComponent,
+    ListEmployeeComponent,
+    AddEmployeeComponent
   ],
   imports: [
+    AppCommonModule,
     CommonModule,
     ReactiveFormsModule,
-    RouterModule,
     TranslateModule,
-    HomeRoutingModule,
+    EmployeeRoutingModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -76,10 +86,25 @@ import {HomeRoutingModule} from './home-routing.module';
     MatAutocompleteModule,
     MatChipsModule,
     MatTooltipModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 3000,
+      tapToDismiss: true,
+      positionClass: 'toast-top-center',
+      progressBar: true,
+      progressAnimation: 'decreasing',
+      preventDuplicates: true,
+      enableHtml: true,
+    }),
+    StoreModule.forFeature('appEmployee', employeeReducers),
+    EffectsModule.forFeature([EmployeeEffects]),
   ],
-  exports: [HomeComponent],
-  providers: []
+  exports: [AddEmployeeCategoryComponent],
+  providers: [
+    EmployeeApi,
+    EmployeeEffects
+  ]
 })
-export class HomeModule {
+export class EmployeeModule {
 
 }

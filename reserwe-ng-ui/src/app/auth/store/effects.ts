@@ -20,10 +20,10 @@ export class AuthEffects {
     ofType(EAuthActions.LOGIN),
     switchMap((props: { username: string, password: string, companyId: string }) => this.authApi.login(props.username, props.password, props.companyId).pipe(
       switchMap((data: any) => {
-          console.log('Data', data.jwt);
+          console.log('Data', data);
           this.navigator.navigate(['/']);
           return of(
-            AuthActions.loginSuccess({token: data.jwt}),
+            AuthActions.loginSuccess({token: data.jwt, userCredentials: data.userCredentials}),
           )
             ;
         }

@@ -1,0 +1,22 @@
+<app-panel [isContainer]="true"
+           [title]="'employee.category.add.title'">
+  <div class="ngo-form-group">
+    <form [formGroup]="form">
+      <mat-form-field [appearance]="'outline'">
+        <mat-label>{{'employee.category.add.label.name' | translate}}</mat-label>
+        <input formControlName="name" matInput>
+      </mat-form-field>
+    </form>
+  </div>
+  <div actions class="ngo-form-group__actions">
+    <button
+      (click)="save()"
+      [disabled]="!form.valid"
+      color="primary"
+      mat-button
+      mat-raised-button
+      type="button"
+    >{{'employee.category.add.actions.save' | translate}}
+    </button>
+  </div>
+</app-panel>

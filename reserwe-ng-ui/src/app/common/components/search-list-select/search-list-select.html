@@ -1,0 +1,31 @@
+<mat-form-field class="form-element" [appearance]="appearance" (click)="emmitClick($event)">
+  <mat-label>{{label | translate}}</mat-label>
+  <mat-select [formControl]="form"
+              [disabled]="disable"
+              (selectionChange)="emmitChange($event.value)"
+              [disableOptionCentering]="true"
+              [multiple]="isMultiple" #selectSearch
+              [required]="required">
+    <mat-option>
+      <ngx-mat-select-search
+        [placeholderLabel]="placeholder | translate"
+        [noEntriesFoundLabel]="('general.label.search.no-data') | translate"
+        [formControl]="selectFilterCtrl"></ngx-mat-select-search>
+    </mat-option>
+    <mat-option *ngFor="let item of filtered$ | async" [value]="valueName ? item[valueName] : item"
+                (onSelectionChange)="onElementChange($event)"
+                [disabled]="disable ? (disable && disabledValues_ ? disabledValues_.includes(item[valueName]) : false) : false"
+                [matTooltip]="item[displayValue].length > 50 ? item[displayValue] : ''">
+      {{translatePrefix ? (translatePrefix + '.'+ item[displayValue].toLowerCase() | translate)  : (item[displayValue]  | translate)}} {{displayValue2 ? item[displayValue2] : ''|translate}}
+    </mat-option>
+  </mat-select>
+  <mat-icon *ngIf="hasSelectValue && form.enabled && form.value !== null && form.value" class="clear-button"
+            (click)="clearSelected($event)" matSuffix>clear
+  </mat-icon>
+  <mat-hint *ngIf="optionObjects.length===0">{{'general.label.error.no-data' | translate}}
+  </mat-hint>
+  <mat-error *ngIf="form.errors" class="invalid-feedback">
+    <span *ngIf="form.errors.required">{{'general.label.error.required'|translate}}</span>
+    <span *ngIf="form.errors[customErrorName]">{{customErrorMessage|translate}}</span>
+  </mat-error>
+</mat-form-field>

@@ -13,9 +13,104 @@
           {{"menu.home.title" | translate}}
         </a>
       </mat-nav-list>
-    </mat-accordion>
 
+      <mat-expansion-panel [expanded]="isExpanded('GROUP_COMPANY_ADMIN')"
+                           (expandedChange)="onChangeTab('GROUP_COMPANY_ADMIN', $event)">
+        <mat-expansion-panel-header class="ngo-expansion-panel__header" fxLayout="row">
+          <mat-panel-title class="ngo-expansion-panel__title">
+            <mat-icon matListIcon>admin_panel_settings</mat-icon>
+            {{"menu.dashboard.admin" | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list dense>
+          <mat-list-item>
+            <a mat-list-item routerLink='/admin/company' routerLinkActive="active">
+              <mat-icon matListIcon>work</mat-icon>
+              {{"menu.dashboard.company" | translate}}
+            </a>
+          </mat-list-item>
+          <mat-list-item>
+            <a mat-list-item routerLink='/admin/service' routerLinkActive="active">
+              <mat-icon matListIcon>supervisor_account</mat-icon>
+              {{"menu.dashboard.role" | translate}}
+            </a>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="isExpanded('GROUP_USER')"
+                           (expandedChange)="onChangeTab('GROUP_USER', $event)">
+        <mat-expansion-panel-header class="ngo-expansion-panel__header" fxLayout="row">
+          <mat-panel-title class="ngo-expansion-panel__title">
+            <mat-icon matListIcon>accessibility</mat-icon>
+            {{"menu.dashboard.employee.title" | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list dense>
+          <mat-list-item>
+            <a mat-list-item routerLink='/employee/category/add' routerLinkActive="active">
+              <mat-icon matListIcon>brightness_auto</mat-icon>
+              {{"menu.dashboard.employee.category.add" | translate}}
+            </a>
+          </mat-list-item>
+          <mat-list-item>
+            <a mat-list-item routerLink='/employee/category/list' routerLinkActive="active">
+              <mat-icon matListIcon>filter_list</mat-icon>
+              {{"menu.dashboard.employee.category.list" | translate}}
+            </a>
+          </mat-list-item>
+          <mat-list-item>
+            <a mat-list-item routerLink='/employee/add' routerLinkActive="active">
+              <mat-icon matListIcon>add_box</mat-icon>
+              {{"menu.dashboard.employee-add" | translate}}
+            </a>
+          </mat-list-item>
+          <mat-list-item>
+            <a mat-list-item routerLink='/employee/list' routerLinkActive="active">
+              <mat-icon matListIcon>filter_list</mat-icon>
+              {{"menu.dashboard.employee-list" | translate}}
+            </a>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="isExpanded('GROUP_SERVICE')"
+                           (expandedChange)="onChangeTab('GROUP_SERVICE', $event)">
+        <mat-expansion-panel-header class="ngo-expansion-panel__header" fxLayout="row">
+          <mat-panel-title class="ngo-expansion-panel__title">
+            <mat-icon matListIcon>local_laundry_service</mat-icon>
+            {{"menu.dashboard.service.title" | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list dense>
+          <mat-list-item>
+            <a mat-list-item routerLink='/service/category' routerLinkActive="active">
+              <mat-icon matListIcon>brightness_auto</mat-icon>
+              {{"menu.dashboard.service.category" | translate}}
+            </a>
+          </mat-list-item>
+          <mat-list-item>
+            <a mat-list-item routerLink='/service/add' routerLinkActive="active">
+              <mat-icon matListIcon>add_box</mat-icon>
+              {{"menu.dashboard.service.add" | translate}}
+            </a>
+          </mat-list-item>
+          <mat-list-item>
+            <a mat-list-item routerLink='/service/list' routerLinkActive="active">
+              <mat-icon matListIcon>filter_list</mat-icon>
+              {{"menu.dashboard.service.list" | translate}}
+            </a>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+    </mat-accordion>
   </mat-sidenav>
+  <mat-side-nav-content>
+    <div class="nt-content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-side-nav-content>
 </mat-sidenav-container>
 
 <!--NESTO-->

@@ -1,7 +1,71 @@
 {
   "login": {
     "username": {
-      "placeholder": "Username"
+      "placeholder": "Korisnicko ime"
+    },
+    "password": {
+      "placeholder": "Lozinka"
     }
+  },
+  "menu": {
+    "home": {
+      "title": "Pocetna"
+    },
+    "dashboard": {
+      "admin": "Administrator",
+      "company": "Company",
+      "service": "Service",
+      "role": "Grupa",
+      "employee": {
+        "title": "Zaposleni",
+        "category": {
+          "add": "Dodaj kategoriju zaposlenog",
+          "list": "Lista kategorija zaposlenih"
+        }
+      },
+      "employee-add": "Dodaj zaposlenog",
+      "employee-list": "Lista zaposlenih",
+      "employee-category": "Kategorija zaposlenog",
+      "service": {
+        "title": "Usluga",
+        "category": "Kategorija usluga",
+        "add": "Dodaj uslugu",
+        "list": "Lista usluga"
+      }
+    }
+  },
+  "employee": {
+    "list": {
+      "title": "Lista zaposlenih",
+      "username": "Korisničko ime",
+      "firstName": "Ime",
+      "lastName": "Prezime",
+      "email": "E-mail"
+    },
+    "add": {
+      "title": "Dodaj zaposlenog",
+      "username": "Korisničko ime",
+      "password": "Prezime",
+      "email": "Mail",
+      "firstName": "Ime",
+      "lastName": "Prezime",
+      "employeeCategories": "Kategorije zaposlenog"
+    },
+    "category": {
+      "add": {
+        "label": {
+          "name": "Ime kategorije zaposlenog"
+        },
+        "actions": {
+          "save": "Sačuvaj"
+        },
+        "title": "Dodaj kategoriju zaposlenog"
+      },
+      "list": {
+        "title": "Lista kategorija zaposlenih",
+        "name": "Naziv"
+      }
+    }
+
   }
 }

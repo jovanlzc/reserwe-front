@@ -1,9 +1,7 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {PanelComponent} from './components/panel/panel.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
-import {HomeComponent} from './components/home/home.component';
-import {SideNavComponent} from './components/home/side-nav/side-nav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -33,20 +31,18 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {RouterModule} from '@angular/router';
-import {HomeRoutingModule} from './home-routing.module';
+import {CommonModule} from '@angular/common';
+import {SearchListSelectComponent} from './components/search-list-select/search-list-select';
 
 @NgModule({
   declarations: [
-    HomeComponent,
-    SideNavComponent
+    PanelComponent,
+    SearchListSelectComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule,
     TranslateModule,
-    HomeRoutingModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -77,9 +73,12 @@ import {HomeRoutingModule} from './home-routing.module';
     MatChipsModule,
     MatTooltipModule,
   ],
-  exports: [HomeComponent],
-  providers: []
+  exports: [
+    PanelComponent,
+    SearchListSelectComponent
+  ]
+
 })
-export class HomeModule {
+export class AppCommonModule {
 
 }
