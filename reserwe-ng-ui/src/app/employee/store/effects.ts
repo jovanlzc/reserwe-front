@@ -63,6 +63,21 @@ export class EmployeeEffects {
       ),
     )));
 
+  updateEmployeeEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(EEmployeeActions.UPDATE_EMPLOYEE),
+    switchMap((props: { employee }) => this.employeeApi.updateEmployee(props.employee).pipe(
+      switchMap((data: any) => {
+          console.log('Data', data);
+          this.navigator.navigate(['/employee/list']);
+          this.notificationMessages.success('Successfully updated employee!');
+          return of(
+            EmployeeActions.updateEmployeeSuccess({employee: data}),
+          );
+        }
+      )
+      ),
+    )));
+
   searchEmployeesEffect$ = createEffect(() => this.actions$.pipe(
     ofType(EEmployeeActions.SEARCH_EMPLOYEE),
     switchMap((props: { searchRequest: SearchEmployeeRequest }) => this.employeeApi.searchEmployee(props.searchRequest).pipe(

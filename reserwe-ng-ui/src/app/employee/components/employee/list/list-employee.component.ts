@@ -5,7 +5,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import * as EmployeeActions from '../../../store/actions';
 import {SearchEmployeeRequest} from '../../../model/search-employee-request.model';
 import * as EmployeeSelectors from '../../../store/selectors';
-import {User} from "../../../../auth/model/user.model";
+import {Employee} from '../../../model/employee.model';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-employee-list',
@@ -13,11 +14,12 @@ import {User} from "../../../../auth/model/user.model";
   styleUrls: ['./list-employee.component.scss']
 })
 export class ListEmployeeComponent implements OnInit {
-  dataSource = new MatTableDataSource<User>([]);
+  dataSource = new MatTableDataSource<Employee>([]);
   title = 'employee.list.title';
-  displayedColumns: string[] = ['details', 'firstName', 'lastName', 'email', 'username'];
+  displayedColumns: string[] = ['details', 'firstName', 'lastName', 'email', 'username', 'categories', 'actions'];
 
-  constructor(private store$: Store<AppState>) {
+  constructor(private store$: Store<AppState>,
+              private navigator: Router) {
     console.log('Poziva se store');
     const searchRequest: SearchEmployeeRequest = {};
     this.store$.dispatch(EmployeeActions.searchEmployees({searchRequest}));
@@ -30,5 +32,10 @@ export class ListEmployeeComponent implements OnInit {
         this.dataSource.connect().next(response);
       }
     });
+  }
+
+  editEmployee(employee: Employee) {
+    console.log('Edit employee');
+    this.navigator.navigate(['/employee/add', {employeeId: employee.uuid}]);
   }
 }

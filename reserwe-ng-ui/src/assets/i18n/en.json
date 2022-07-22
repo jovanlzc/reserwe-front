@@ -41,7 +41,8 @@
       "username": "Username",
       "firstName": "First Name",
       "lastName": "Last Name",
-      "email": "Email"
+      "email": "Email",
+      "categories": "Categories"
     },
     "add": {
       "title": "Add Employee",
@@ -66,6 +67,14 @@
         "title": "List of Employee Categories",
         "name": "Name"
       }
+    }
+  },
+  "shared": {
+    "fields": {
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit-employee": "Edit Employee"
     }
   }
 }

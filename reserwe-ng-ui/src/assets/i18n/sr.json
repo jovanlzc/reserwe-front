@@ -40,7 +40,8 @@
       "username": "Korisničko ime",
       "firstName": "Ime",
       "lastName": "Prezime",
-      "email": "E-mail"
+      "email": "E-mail",
+      "categories": "Kategorije zaposlenog"
     },
     "add": {
       "title": "Dodaj zaposlenog",
@@ -66,6 +67,13 @@
         "name": "Naziv"
       }
     }
-
+  },
+  "shared": {
+    "fields": {
+      "actions": "Akcije"
+    },
+    "actions": {
+      "edit-employee": "Izmeni zaposlenog"
+    }
   }
 }

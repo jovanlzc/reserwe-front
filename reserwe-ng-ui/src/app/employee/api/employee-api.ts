@@ -44,6 +44,16 @@ export class EmployeeApi {
       });
   }
 
+  updateEmployee(employee: Employee): Observable<any> {
+    const url = `${this.RESERWE_EMPLOYEE_API}/executor-type-executor/updateAll`;
+    return this.http.post(url, {...employee, companyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a'},
+      {
+        headers: {
+          CompanyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a'
+        }
+      });
+  }
+
   searchEmployee(searchRequest: SearchEmployeeRequest): Observable<any> {
     const url = `${this.RESERWE_EMPLOYEE_API}/executor-type-executor/userProfiles`;
     return this.http.get(url, {

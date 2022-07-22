@@ -10,13 +10,16 @@ export const addEmployeeCategory = createAction(EEmployeeActions.ADD_EMPLOYEE_CA
 export const addEmployeeCategorySuccess = createAction(EEmployeeActions.ADD_EMPLOYEE_CATEGORY_SUCCESS, props<{ employeeCategory: EmployeeCategory }>());
 
 export const searchEmployeeCategories = createAction(EEmployeeActions.SEARCH_EMPLOYEE_CATEGORIES, props<{ searchRequest: SearchEmployeeCategories }>());
-export const searchEmployeeCategoriesSuccess = createAction(EEmployeeActions. SEARCH_EMPLOYEE_CATEGORIES_SUCCESS, props<{ searchResponse: EmployeeCategory[] }>());
+export const searchEmployeeCategoriesSuccess = createAction(EEmployeeActions.SEARCH_EMPLOYEE_CATEGORIES_SUCCESS, props<{ searchResponse: EmployeeCategory[] }>());
 
 export const searchEmployees = createAction(EEmployeeActions.SEARCH_EMPLOYEE, props<{ searchRequest: SearchEmployeeRequest }>());
 export const searchEmployeesSuccess = createAction(EEmployeeActions.SEARCH_EMPLOYEE_SUCCESS, props<{ searchResponse: User[] }>());
 
 export const addEmployee = createAction(EEmployeeActions.ADD_EMPLOYEE, props<{ employee: Employee }>());
 export const addEmployeeSuccess = createAction(EEmployeeActions.ADD_EMPLOYEE_SUCCESS, props<{ employee: Employee }>());
+
+export const updateEmployee = createAction(EEmployeeActions.UPDATE_EMPLOYEE, props<{ employee: Employee }>());
+export const updateEmployeeSuccess = createAction(EEmployeeActions.UPDATE_EMPLOYEE_SUCCESS, props<{ employee: Employee }>());
 
 const all = union({
   addEmployeeCategory,
@@ -26,7 +29,9 @@ const all = union({
   searchEmployees,
   searchEmployeesSuccess,
   addEmployee,
-  addEmployeeSuccess
+  addEmployeeSuccess,
+  updateEmployee,
+  updateEmployeeSuccess,
 });
 
 export type EmployeeActions = typeof all;

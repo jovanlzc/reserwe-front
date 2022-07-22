@@ -4,12 +4,13 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../../../root-store/state';
 import {Observable} from 'rxjs';
 import {EmployeeCategory} from '../../../model/employee-category.model';
-import {selectEmployeeCategories} from '../../../store/selectors';
+import {selectEmployeeCategories, selectEmployees} from '../../../store/selectors';
 import {SearchEmployeeCategories} from '../../../model/search-employee-categories.model';
 import * as EmployeeActions from '../../../store/actions';
-import {addEmployee} from "../../../store/actions";
-import {Employee} from "../../../model/employee.model";
-import {User} from "../../../../auth/model/user.model";
+import {addEmployee, updateEmployee} from '../../../store/actions';
+import {Employee} from '../../../model/employee.model';
+import {User} from '../../../../auth/model/user.model';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-add-employee',
@@ -19,20 +20,34 @@ import {User} from "../../../../auth/model/user.model";
 export class AddEmployeeComponent implements OnInit {
   form: FormGroup;
   employeeCategories$: Observable<EmployeeCategory[]>;
+  employee: Employee;
 
   constructor(private formBuilder: FormBuilder,
-              private store$: Store<AppState>) {
+              private store$: Store<AppState>,
+              private route: ActivatedRoute) {
     const searchRequest: SearchEmployeeCategories = {};
     this.store$.dispatch(EmployeeActions.searchEmployeeCategories({searchRequest}));
   }
 
   ngOnInit(): void {
-    this.setSelectors();
     this.initForm();
+    this.setSelectors();
   }
 
   setSelectors(): void {
     this.employeeCategories$ = this.store$.select(selectEmployeeCategories);
+    this.route.params.subscribe(params => {
+        if (params.employeeId) {
+          console.log(params.employeeId);
+          this.store$.select(selectEmployees).subscribe(employees => {
+            console.log('Employees', employees);
+            this.employee = employees.find(employee => employee.uuid === params.employeeId);
+            console.log('NadjenEmployee', this.employee);
+            this.patchForm(this.employee);
+          });
+        }
+      }
+    );
   }
 
   initForm(): void {
@@ -47,6 +62,18 @@ export class AddEmployeeComponent implements OnInit {
     });
   }
 
+  patchForm(employee: Employee): void {
+    console.log('Patchuje se forma');
+    this.form.patchValue({
+      username: employee.user.username,
+      password: employee.user.password,
+      email: employee.user.email,
+      firstName: employee.user.firstName,
+      lastName: employee.user.lastName,
+      executorCategories: employee.employeeCategories.map(category => category.id)
+    });
+  }
+
   save(): void {
     const user: User = {
       ...this.form.value,
@@ -56,6 +83,10 @@ export class AddEmployeeComponent implements OnInit {
     const employee: Employee = {
       user, employeeCategoriesIds: this.form.value.executorCategories
     };
-    this.store$.dispatch(addEmployee({employee}));
+    if (!this.employee) {
+      this.store$.dispatch(addEmployee({employee}));
+    } else {
+      this.store$.dispatch(updateEmployee({employee}));
+    }
   }
 }
