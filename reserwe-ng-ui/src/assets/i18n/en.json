@@ -29,7 +29,10 @@
       },
       "service": {
         "title": "Service",
-        "category": "Service Category",
+        "category": {
+          "add": "Add Service Category",
+          "list": "List of Service Categories"
+        },
         "add": "Add Service",
         "list": "List of Services"
       }
@@ -69,12 +72,65 @@
       }
     }
   },
+  "service": {
+    "list": {
+      "title": "List of Services",
+      "name": "Name",
+      "duration": "Duration",
+      "basicPrice": "Basic Price",
+      "description": "Description",
+      "category": "Category"
+    },
+    "category": {
+      "add": {
+        "label": {
+          "name": "Name of Category"
+        },
+        "actions": {
+          "save": "Save"
+        },
+        "title": "Add Service Category"
+      },
+      "list": {
+        "title": "List of Service Categories",
+        "name": "Name"
+      }
+    },
+    "price-list": {
+      "add": {
+        "title": "Add Price List",
+        "dateFrom": "Date From",
+        "dateTo": "Date To",
+        "amount": "Amount",
+        "employeeCategories": "Categories of Employee"
+      },
+      "list": {
+        "title": "List of Prices",
+        "amount": "Amount",
+        "date": "Date Range",
+        "employeeCategories": "Categories"
+      }
+    },
+    "add": {
+      "title": "Add Service",
+      "name": "Name",
+      "duration": "Duration",
+      "basicPrice": "Basic Price",
+      "description": "Description",
+      "serviceCategories": "Service Categories",
+      "actions": {
+        "save": "Save"
+      }
+    }
+  },
   "shared": {
     "fields": {
       "actions": "Actions"
     },
     "actions": {
-      "edit-employee": "Edit Employee"
+      "edit-employee": "Edit Employee",
+      "addPriceList": "Add Price List",
+      "editPriceLists": "Edit Price Lists"
     }
   }
 }

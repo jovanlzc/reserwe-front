@@ -1,0 +1,46 @@
+<app-panel [isContainer]="true"
+           [title]="'service.add.title'">
+  <div class="ngo-form-group">
+    <form [formGroup]="form">
+      <mat-form-field [appearance]="'outline'">
+        <mat-label>{{'service.add.name' | translate}}</mat-label>
+        <input formControlName="name" matInput>
+      </mat-form-field>
+      <mat-form-field [appearance]="'outline'">
+        <mat-label>{{'service.add.duration' | translate}}</mat-label>
+        <input type="number" formControlName="duration" matInput>
+      </mat-form-field>
+      <mat-form-field [appearance]="'outline'">
+        <mat-label>{{'service.add.basicPrice' | translate}}</mat-label>
+        <input type="number" formControlName="basicPrice" matInput>
+      </mat-form-field>
+      <mat-form-field [appearance]="'outline'">
+        <mat-label>{{'service.add.description' | translate}}</mat-label>
+        <input matInput formControlName="description">
+      </mat-form-field>
+      <lib-search-list-select
+        [appearance]="'outline'"
+        [comparator]="'name'"
+        [displayValue]="'name'"
+        [form]="form.controls.basicServiceCategoryId"
+        [isMultiple]="false"
+        [label]="'service.add.serviceCategories'"
+        [optionObjects]="serviceCategories$ | async"
+        [placeholder]="'general.label.search'"
+        [required]="true"
+        [valueName]="'id'">
+      </lib-search-list-select>
+    </form>
+  </div>
+  <div actions class="ngo-form-group__actions">
+    <button
+      (click)="save()"
+      [disabled]="!form.valid"
+      color="primary"
+      mat-button
+      mat-raised-button
+      type="button"
+    >{{'service.add.actions.save' | translate}}
+    </button>
+  </div>
+</app-panel>

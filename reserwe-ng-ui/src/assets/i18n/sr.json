@@ -28,7 +28,10 @@
       "employee-category": "Kategorija zaposlenog",
       "service": {
         "title": "Usluga",
-        "category": "Kategorija usluga",
+        "category": {
+          "add": "Dodaj kategoriju usluge",
+          "list": "Lista kategorija usluga"
+        },
         "add": "Dodaj uslugu",
         "list": "Lista usluga"
       }
@@ -68,12 +71,47 @@
       }
     }
   },
+  "service": {
+    "category": {
+      "add": {
+        "label": {
+          "name": "Ime kategorije"
+        },
+        "actions": {
+          "save": "Sačuvaj"
+        },
+        "title": "Kategorija usluge"
+      }
+    },
+    "price-list": {
+      "add": {
+        "title": "Dodaj Cenovnik",
+        "dateFrom": "Datum od",
+        "dateTo": "Datum do",
+        "amount": "Iznos",
+        "employeeCategories": "Kategorije zaposlenog"
+      }
+    },
+    "add": {
+      "title": "Dodaj uslugu",
+      "name": "Naziv",
+      "duration": "Trajanje",
+      "basicPrice": "Osnovna cena",
+      "description": "Opis",
+      "serviceCategories": "Kategorija usluge",
+      "actions": {
+        "save": "Sačuvaj"
+      }
+    }
+  },
   "shared": {
     "fields": {
       "actions": "Akcije"
     },
     "actions": {
-      "edit-employee": "Izmeni zaposlenog"
+      "edit-employee": "Izmeni zaposlenog",
+      "addPriceList": "Dodaj cenovnik",
+      "editPriceLists": "Izmeni cenovnike"
     }
   }
 }

@@ -1,5 +1,7 @@
 import {NgModule} from '@angular/core';
-import {PanelComponent} from './components/panel/panel.component';
+import {AddServiceCategoryComponent} from './components/service-category/add/add-service-category.component';
+import {ServiceRoutingModule} from './service-routing.module';
+import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -31,18 +33,36 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {CommonModule} from '@angular/common';
-import {SearchListSelectComponent} from './components/search-list-select/search-list-select';
+import {ToastrModule} from 'ngx-toastr';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {serviceReducers} from './store/reducers';
+import {ServiceEffects} from './store/effects';
+import {ServiceApi} from './api/service-api';
+import {ListServiceCategoryComponent} from './components/service-category/list/list-service-category.component';
+import {AppCommonModule} from '../common/common.module';
+import {AddServiceComponent} from './components/service/add/add-service.component';
+import {ListServiceComponent} from './components/service/list/list-service.component';
+import {ListPriceModalComponent} from './modal/price/list/list-price.component';
+import {AddPriceModalComponent} from './modal/price/add/add-price.component';
+import {EmployeeModule} from "../employee/employee.module";
 
 @NgModule({
   declarations: [
-    PanelComponent,
-    SearchListSelectComponent
+    AddServiceCategoryComponent,
+    ListServiceCategoryComponent,
+    AddServiceComponent,
+    ListServiceComponent,
+    AddPriceModalComponent,
+    ListPriceModalComponent
   ],
   imports: [
     CommonModule,
+    AppCommonModule,
     ReactiveFormsModule,
     TranslateModule,
+    ServiceRoutingModule,
+    EmployeeModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -72,45 +92,29 @@ import {SearchListSelectComponent} from './components/search-list-select/search-
     MatAutocompleteModule,
     MatChipsModule,
     MatTooltipModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 3000,
+      tapToDismiss: true,
+      positionClass: 'toast-top-center',
+      progressBar: true,
+      progressAnimation: 'decreasing',
+      preventDuplicates: true,
+      enableHtml: true,
+    }),
+    StoreModule.forFeature('appService', serviceReducers),
+    EffectsModule.forFeature([ServiceEffects]),
   ],
   exports: [
-    PanelComponent,
-    SearchListSelectComponent,
-    CommonModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule,
-    MatCardModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatTableModule,
-    MatDialogModule,
-    MatInputModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    MatExpansionModule,
-    MatStepperModule,
-    MatCheckboxModule,
-    MatMenuModule,
-    MatRadioModule,
-    MatGridListModule,
-    MatSlideToggleModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatDividerModule,
-    MatTabsModule,
-    MatDatepickerModule,
-    MatMomentDateModule,
-    MatBadgeModule,
-    MatAutocompleteModule,
-    MatChipsModule,
-    MatTooltipModule,
+    AddPriceModalComponent,
+    ListPriceModalComponent
+  ],
+  providers: [
+    ServiceApi,
+    ServiceEffects
   ]
-
 })
-export class AppCommonModule {
-
+export class ServiceModule {
+  constructor() {
+  }
 }
