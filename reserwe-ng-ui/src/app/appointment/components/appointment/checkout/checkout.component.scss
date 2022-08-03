@@ -1,0 +1,58 @@
+.checkout-wrapper {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+.side-left {
+  float: left;
+  width: 50%;
+}
+
+.side-right {
+  float: left;
+  width: 50%;
+}
+
+.calendar-content {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 5%;
+}
+
+.checkout-employees {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 5%;
+  display: block;
+}
+
+.employees-block {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.employees-wrapper {
+  float: left;
+  padding: 5%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.employee-select {
+  padding: 0;
+  width: 80%;
+  float: left;
+  display: block;
+}
+
+.mat-form-field-wrapper{
+  padding-bottom: 0;
+}
+
+.time-ranges{
+  margin-top: 3%;
+  margin-left: 6%;
+}

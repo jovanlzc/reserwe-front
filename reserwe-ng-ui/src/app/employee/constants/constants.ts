@@ -9,4 +9,6 @@ export enum EEmployeeActions {
     ADD_EMPLOYEE_SUCCESS = '[Employee] Add Employee Success',
     UPDATE_EMPLOYEE = '[Employee] Update Employee',
     UPDATE_EMPLOYEE_SUCCESS = '[Employee] Update Employee Success',
+    ADD_WORK_PLANNER = '[Employee] Add Work Planner',
+    ADD_WORK_PLANNER_SUCCESS = '[Employee] Add Work Planner Success'
 }

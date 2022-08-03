@@ -43,13 +43,16 @@ import {EmployeeApi} from './api/employee-api';
 import {ListEmployeeCategoryComponent} from './components/employee-category/list/list-employee-category.component';
 import {ListEmployeeComponent} from './components/employee/list/list-employee.component';
 import {AddEmployeeComponent} from './components/employee/add/add-employee.component';
+import {WorkPlannerModalComponent} from './modal/work-planner/work-planner.modal.component';
+import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
 
 @NgModule({
   declarations: [
     AddEmployeeCategoryComponent,
     ListEmployeeCategoryComponent,
     ListEmployeeComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    WorkPlannerModalComponent
   ],
   imports: [
     AppCommonModule,
@@ -86,6 +89,7 @@ import {AddEmployeeComponent} from './components/employee/add/add-employee.compo
     MatAutocompleteModule,
     MatChipsModule,
     MatTooltipModule,
+    NgxMatTimepickerModule,
     ToastrModule.forRoot({
       closeButton: true,
       timeOut: 3000,
@@ -99,7 +103,10 @@ import {AddEmployeeComponent} from './components/employee/add/add-employee.compo
     StoreModule.forFeature('appEmployee', employeeReducers),
     EffectsModule.forFeature([EmployeeEffects]),
   ],
-  exports: [AddEmployeeCategoryComponent],
+  exports: [
+    AddEmployeeCategoryComponent,
+    WorkPlannerModalComponent
+  ],
   providers: [
     EmployeeApi,
     EmployeeEffects

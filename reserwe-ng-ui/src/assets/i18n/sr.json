@@ -34,6 +34,11 @@
         },
         "add": "Dodaj uslugu",
         "list": "Lista usluga"
+      },
+      "appointment": {
+        "title": "Rezervacija",
+        "add": "Dodaj rezervaciju",
+        "list": "Lista rezervacija"
       }
     }
   },
@@ -68,6 +73,13 @@
       "list": {
         "title": "Lista kategorija zaposlenih",
         "name": "Naziv"
+      }
+    },
+    "work-planner": {
+      "add": {
+        "title": "Dodaj plan rada",
+        "dateRange": "Datum",
+        "countRepeat": "Broj ponavljanja"
       }
     }
   },
@@ -104,6 +116,14 @@
       }
     }
   },
+  "appointment": {
+    "checkout": {
+      "add": {
+        "title": "Vaša korpa"
+      }
+
+    }
+  },
   "shared": {
     "fields": {
       "actions": "Akcije"
@@ -111,7 +131,8 @@
     "actions": {
       "edit-employee": "Izmeni zaposlenog",
       "addPriceList": "Dodaj cenovnik",
-      "editPriceLists": "Izmeni cenovnike"
+      "editPriceLists": "Izmeni cenovnike",
+      "add-work-planner": "Dodaj plan rada"
     }
   }
 }

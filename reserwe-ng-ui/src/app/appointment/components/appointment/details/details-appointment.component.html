@@ -1,0 +1,14 @@
+<div style="position: fixed;
+            bottom: 10%;
+            transform: translate(0, 100%);
+            width: 90%;
+            border-top: 1px solid #a2a3b7;
+            z-index: 10;
+            background-color: white;">
+  <div style="font-size: 22px;width: 60%; font-weight: bolder; float: left; padding: 20px;">
+    <mat-label>Izabrali ste {{checkedServices?.length}} usluge</mat-label>
+  </div>
+  <div style="float: left; padding:20px; width: 30%; font-size: 30px; align-items: center; justify-content: center; display: flex;">
+    <button style="justify-content: center" (click)="save()" mat-button mat-raised-button color="warn">Izaberite vreme i izvršioce</button>
+  </div>
+</div>

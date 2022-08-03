@@ -9,6 +9,7 @@ body {
 .nt-content-container {
   position: relative;
   min-height: calc(100vh - 177px);
+  height: 95%;
   //router-outlet ~ * {
   //  position: absolute;
   //  width: 100%;
@@ -111,7 +112,9 @@ body {
   mat-form-field {
     width: 100%;
   }
-
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
 
 .ngo-form-group__actions {

@@ -6,6 +6,7 @@ import {Service} from '../model/service.model';
 import {SearchService} from '../model/search-service.model';
 import {SearchPriceList} from '../../employee/model/search-price-list.model';
 import {PriceList} from '../model/price-list.model';
+import {CheckoutPriceList} from "../model/checkout-price-list.model";
 
 export const addServiceCategory = createAction(EServiceActions.ADD_SERVICE_CATEGORY, props<{ serviceCategory: ServiceCategory }>());
 export const addServiceCategorySuccess = createAction(EServiceActions.ADD_SERVICE_CATEGORY_SUCCESS, props<{ serviceCategory: ServiceCategory }>());
@@ -28,6 +29,11 @@ export const addPriceListSuccess = createAction(EServiceActions.ADD_PRICE_LIST_S
 export const searchPriceLists = createAction(EServiceActions.SEARCH_PRICE_LIST, props<{ searchRequest: SearchPriceList }>());
 export const searchPriceListsSuccess = createAction(EServiceActions.SEARCH_PRICE_LIST_SUCCESS, props<{ searchResponse: PriceList[] }>());
 
+export const getPriceListsByServices = createAction(EServiceActions.GET_PRICE_LIST_BY_SERVICE, props<{ searchRequest: SearchPriceList}>());
+export const getPriceListsByServicesSuccess = createAction(EServiceActions.GET_PRICE_LIST_BY_SERVICE_SUCCESS, props<{ searchResponse: CheckoutPriceList[]}>());
+
+export const setSelectedServices = createAction(EServiceActions.SET_SELECTED_SERVICES, props<{ services: Service[] }>());
+
 const all = union({
   addServiceCategory,
   addServiceCategorySuccess,
@@ -42,7 +48,10 @@ const all = union({
   addPriceList,
   addPriceListSuccess,
   searchPriceLists,
-  searchPriceListsSuccess
+  searchPriceListsSuccess,
+  getPriceListsByServices,
+  getPriceListsByServicesSuccess,
+  setSelectedServices
 });
 
 export type ServiceActions = typeof all;

@@ -45,6 +45,10 @@
               <mat-icon>edit</mat-icon>
               <span>{{'shared.actions.edit-employee' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="addWorkPlanner(element)">
+              <mat-icon>add_box</mat-icon>
+              <span>{{'shared.actions.add-work-planner' | translate}}</span>
+            </button>
           </mat-menu>
         </td>
       </ng-container>

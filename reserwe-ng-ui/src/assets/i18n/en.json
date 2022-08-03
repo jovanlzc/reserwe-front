@@ -35,6 +35,11 @@
         },
         "add": "Add Service",
         "list": "List of Services"
+      },
+      "appointment": {
+        "title": "Appointment",
+        "add": "Add Appointment",
+        "list": "List of Appointments"
       }
     }
   },
@@ -69,6 +74,13 @@
       "list": {
         "title": "List of Employee Categories",
         "name": "Name"
+      }
+    },
+    "work-planner": {
+      "add": {
+        "title": "Add Work Planner",
+        "dateRange": "Date Range",
+        "countRepeat": "Count Repeat"
       }
     }
   },
@@ -123,6 +135,14 @@
       }
     }
   },
+  "appointment": {
+    "checkout": {
+      "add": {
+        "title": "Checkout Cart"
+      }
+
+    }
+  },
   "shared": {
     "fields": {
       "actions": "Actions"
@@ -130,7 +150,8 @@
     "actions": {
       "edit-employee": "Edit Employee",
       "addPriceList": "Add Price List",
-      "editPriceLists": "Edit Price Lists"
+      "editPriceLists": "Edit Price Lists",
+      "add-work-planner": "Add Work Planner"
     }
   }
 }

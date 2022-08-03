@@ -10,7 +10,7 @@ import {ServiceApi} from '../api/service-api';
 import * as ServiceActions from './actions';
 import {SearchServiceCategories} from '../model/search-service-categories.model';
 import {SearchService} from '../model/search-service.model';
-import {SearchPriceList} from "../../employee/model/search-price-list.model";
+import {SearchPriceList} from '../../employee/model/search-price-list.model';
 
 @Injectable()
 export class ServiceEffects {
@@ -123,5 +123,19 @@ export class ServiceEffects {
       )
       ),
     )));
+
+  getPriceListsByServicesEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(EServiceActions.GET_PRICE_LIST_BY_SERVICE),
+    switchMap((props: { searchRequest: SearchPriceList }) => this.serviceApi.getPriceListsByServices(props.searchRequest).pipe(
+      switchMap((data: any) => {
+          console.log('Data', data);
+          return of(
+            ServiceActions.getPriceListsByServicesSuccess({searchResponse: data}),
+          );
+        }
+      )
+      ),
+    )));
+
 
 }

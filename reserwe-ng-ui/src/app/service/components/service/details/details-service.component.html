@@ -1,0 +1,17 @@
+<div>
+  <div style="float: left; padding:0 20px;margin-top: 22px;" *ngIf="!disableChecked">
+    <mat-checkbox color="primary"
+                  (change)="serviceCheck()"></mat-checkbox>
+  </div>
+  <div style="float: left; padding: 0 20px;">
+    <div style="font-size: 18px; color: black;">
+      <mat-label>{{service.name}}</mat-label>
+    </div>
+    <div style="font-size: 13px; color: darkgray;">
+      <mat-label>{{service.duration}} - MIN</mat-label>
+    </div>
+    <div style="font-size: 15px; color: black; font-weight: lighter">
+      <mat-label>{{service.description}}</mat-label>
+    </div>
+  </div>
+</div>

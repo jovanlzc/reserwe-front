@@ -5,6 +5,7 @@ import {SearchEmployeeCategories} from '../model/search-employee-categories.mode
 import {SearchEmployeeRequest} from '../model/search-employee-request.model';
 import {Employee} from '../model/employee.model';
 import {User} from '../../auth/model/user.model';
+import {WorkPlannerExecutorWrapper} from "../model/work-planner.model";
 
 export const addEmployeeCategory = createAction(EEmployeeActions.ADD_EMPLOYEE_CATEGORY, props<{ employeeCategory: EmployeeCategory }>());
 export const addEmployeeCategorySuccess = createAction(EEmployeeActions.ADD_EMPLOYEE_CATEGORY_SUCCESS, props<{ employeeCategory: EmployeeCategory }>());
@@ -21,6 +22,10 @@ export const addEmployeeSuccess = createAction(EEmployeeActions.ADD_EMPLOYEE_SUC
 export const updateEmployee = createAction(EEmployeeActions.UPDATE_EMPLOYEE, props<{ employee: Employee }>());
 export const updateEmployeeSuccess = createAction(EEmployeeActions.UPDATE_EMPLOYEE_SUCCESS, props<{ employee: Employee }>());
 
+export const addWorkPlanner = createAction(EEmployeeActions.ADD_WORK_PLANNER, props<{ workPlanner: WorkPlannerExecutorWrapper }>());
+export const addWorkPlannerSuccess = createAction(EEmployeeActions.ADD_WORK_PLANNER_SUCCESS, props<{ workPlanner: WorkPlannerExecutorWrapper }>());
+
+
 const all = union({
   addEmployeeCategory,
   addEmployeeCategorySuccess,
@@ -32,6 +37,8 @@ const all = union({
   addEmployeeSuccess,
   updateEmployee,
   updateEmployeeSuccess,
+  addWorkPlanner,
+  addWorkPlannerSuccess
 });
 
 export type EmployeeActions = typeof all;

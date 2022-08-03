@@ -1,0 +1,83 @@
+<app-panel [isContainer]="true"
+           [title]="'employee.work-planner.add.title'">
+  <div class="ngo-form-group">
+    <form [formGroup]="form">
+      <div *ngFor="let workPlanner of form.controls.dateTimeArray.controls; let i = index;">
+        <div class="wrapper">
+          <div class="time-wrapper" formArrayName="workPlannerTimes">
+            <div *ngFor="let workPlannerTime of workPlanner.controls.workPlannerTimes.controls; let j = index;"
+                 style="width: 100%; float: left; padding: 2%;">
+              <mat-form-field class="time-field">
+                <input matInput
+                       name="selected_time_A"
+                       [ngxMatTimepicker]="pickerA"
+                       placeholder="Start time"
+                       readonly/>
+                <mat-icon matSuffix
+                          (click)="pickerA.open()">
+                  watch_later
+                </mat-icon>
+                <ngx-mat-timepicker (timeSet)="changeStartTime($event, i, j)" #pickerA></ngx-mat-timepicker>
+              </mat-form-field>
+              <mat-form-field class="time-field">
+                <input matInput
+                       name="selected_time_B"
+                       [ngxMatTimepicker]="pickerB"
+                       placeholder="End time"
+                       (dateChange)="changeEndTime($event, i, j)"
+                       readonly/>
+                <mat-icon matSuffix
+                          (click)="pickerB.open()">
+                  watch_later
+                </mat-icon>
+                <ngx-mat-timepicker (timeSet)="changeEndTime($event, i, j)" #pickerB></ngx-mat-timepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="button-time-planner">
+            <button mat-mini-fab (click)="addWorkPlannerTime(i)" size="small" color="primary"
+                    aria-label="Example icon button with a delete icon">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+
+          <mat-form-field class="date-field"
+                          [appearance]="'outline'">
+            <mat-label>{{'employee.work-planner.add.dateRange' | translate}}</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate (dateChange)="changeStartDate($event, i)" readonly>
+              <input matEndDate (dateChange)="changeEndDate($event, i)" readonly>
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-icon matPrefix class="clear-button" (click)="clearDate($event)">clear
+            </mat-icon>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="button-time-planner">
+        <button mat-mini-fab (click)="addWorkPlannerRow()" size="small" color="primary"
+                aria-label="Example icon button with a delete icon">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="count-repeat">
+        <mat-form-field [appearance]="'outline'">
+          <mat-label>{{'employee.work-planner.add.countRepeat' | translate}}</mat-label>
+          <input type="number" formControlName="countRepeat" matInput>
+        </mat-form-field>
+      </div>
+      <div actions class="save">
+        <button
+          (click)="save()"
+          color="primary"
+          mat-button
+          mat-raised-button
+          type="button"
+        >{{'employee.category.add.actions.save' | translate}}
+        </button>
+      </div>
+    </form>
+  </div>
+</app-panel>
+

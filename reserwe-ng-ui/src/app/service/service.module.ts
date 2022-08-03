@@ -45,7 +45,9 @@ import {AddServiceComponent} from './components/service/add/add-service.componen
 import {ListServiceComponent} from './components/service/list/list-service.component';
 import {ListPriceModalComponent} from './modal/price/list/list-price.component';
 import {AddPriceModalComponent} from './modal/price/add/add-price.component';
-import {EmployeeModule} from "../employee/employee.module";
+import {EmployeeModule} from '../employee/employee.module';
+import {DetailsServiceComponent} from './components/service/details/details-service.component';
+import {DetailsServiceCategoryComponent} from './components/service-category/details/details-service-category.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import {EmployeeModule} from "../employee/employee.module";
     AddServiceComponent,
     ListServiceComponent,
     AddPriceModalComponent,
-    ListPriceModalComponent
+    ListPriceModalComponent,
+    DetailsServiceComponent,
+    DetailsServiceCategoryComponent
   ],
   imports: [
     CommonModule,
@@ -107,7 +111,9 @@ import {EmployeeModule} from "../employee/employee.module";
   ],
   exports: [
     AddPriceModalComponent,
-    ListPriceModalComponent
+    ListPriceModalComponent,
+    DetailsServiceComponent,
+    DetailsServiceCategoryComponent
   ],
   providers: [
     ServiceApi,

@@ -1,0 +1,42 @@
+.ngo-form-group{
+  display: flex;
+}
+.wrapper{
+  display: flex;
+  width: 80%;
+  float: left;
+}
+.time-wrapper{
+  display: block;
+  float: left;
+  width: 35%;
+}
+form{
+  width: 100%;
+}
+.time-field{
+  float: left;
+  width: 50%;
+  padding: 2%;
+}
+.date-field{
+  float: left;
+  width: 35%;
+  padding-left: 6%;
+}
+
+.button-time-planner{
+  float: left;
+  width: 20%;
+  padding: 0 2%;
+}
+
+.count-repeat{
+  width: 40%;
+}
+
+.save{
+  text-align: end;
+  width: 30%;
+  float: right;
+}

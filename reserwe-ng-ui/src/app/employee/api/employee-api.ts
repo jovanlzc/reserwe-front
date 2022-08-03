@@ -5,7 +5,8 @@ import {Injectable} from '@angular/core';
 import {EmployeeCategory} from '../model/employee-category.model';
 import {SearchEmployeeCategories} from '../model/search-employee-categories.model';
 import {Employee} from '../model/employee.model';
-import {SearchEmployeeRequest} from "../model/search-employee-request.model";
+import {SearchEmployeeRequest} from '../model/search-employee-request.model';
+import {WorkPlannerExecutorWrapper} from "../model/work-planner.model";
 
 @Injectable()
 export class EmployeeApi {
@@ -61,5 +62,15 @@ export class EmployeeApi {
         CompanyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a'
       }
     });
+  }
+
+  addWorkPlanner(workPlanner: WorkPlannerExecutorWrapper): Observable<any> {
+    const url = `${this.RESERWE_EMPLOYEE_API}/work-planner-executor/addAll`;
+    return this.http.post(url, {...workPlanner, companyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a'},
+      {
+        headers: {
+          CompanyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a'
+        }
+      });
   }
 }

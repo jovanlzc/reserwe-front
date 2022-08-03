@@ -1,5 +1,5 @@
-<mat-sidenav-container>
-  <mat-sidenav #sidenav [mode]="over" [(opened)]="opened" class="ngo-sidenav bottom-to-top">
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav [mode]="over" [(opened)]="opened" class="ngo-sidenav bottom-to-top" [fixedBottomGap]="true">
     <div class="ngo-logo mat-elevation-z3">
       <a>
         <img class="ngo-logo__img" src="../../../../assets/images/ngo-logo.png"/>
@@ -110,6 +110,30 @@
         </mat-nav-list>
       </mat-expansion-panel>
 
+      <mat-expansion-panel [expanded]="isExpanded('GROUP_APPOINTMENT')"
+                           (expandedChange)="onChangeTab('GROUP_APPOINTMENT', $event)">
+        <mat-expansion-panel-header class="ngo-expansion-panel__header" fxLayout="row">
+          <mat-panel-title class="ngo-expansion-panel__title">
+            <mat-icon matListIcon>present_to_all</mat-icon>
+            {{"menu.dashboard.appointment.title" | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list dense>
+          <mat-list-item>
+            <a mat-list-item routerLink='/appointment/add' routerLinkActive="active">
+              <mat-icon matListIcon>add_box</mat-icon>
+              {{"menu.dashboard.appointment.add" | translate}}
+            </a>
+          </mat-list-item>
+          <mat-list-item>
+            <a mat-list-item routerLink='/appointment/list' routerLinkActive="active">
+              <mat-icon matListIcon>filter_list</mat-icon>
+              {{"menu.dashboard.appointment.list" | translate}}
+            </a>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
     </mat-accordion>
   </mat-sidenav>
   <mat-side-nav-content>
@@ -118,5 +142,3 @@
     </div>
   </mat-side-nav-content>
 </mat-sidenav-container>
-
-<!--NESTO-->

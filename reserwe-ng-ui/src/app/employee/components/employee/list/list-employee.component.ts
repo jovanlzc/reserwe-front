@@ -6,7 +6,9 @@ import * as EmployeeActions from '../../../store/actions';
 import {SearchEmployeeRequest} from '../../../model/search-employee-request.model';
 import * as EmployeeSelectors from '../../../store/selectors';
 import {Employee} from '../../../model/employee.model';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {WorkPlannerModalComponent} from '../../../modal/work-planner/work-planner.modal.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -19,7 +21,8 @@ export class ListEmployeeComponent implements OnInit {
   displayedColumns: string[] = ['details', 'firstName', 'lastName', 'email', 'username', 'categories', 'actions'];
 
   constructor(private store$: Store<AppState>,
-              private navigator: Router) {
+              private navigator: Router,
+              private dialog: MatDialog) {
     console.log('Poziva se store');
     const searchRequest: SearchEmployeeRequest = {};
     this.store$.dispatch(EmployeeActions.searchEmployees({searchRequest}));
@@ -37,5 +40,17 @@ export class ListEmployeeComponent implements OnInit {
   editEmployee(employee: Employee) {
     console.log('Edit employee');
     this.navigator.navigate(['/employee/add', {employeeId: employee.uuid}]);
+  }
+
+  addWorkPlanner(employee: Employee){
+    this.dialog.open(WorkPlannerModalComponent, {
+      width: '70%',
+      height: '65%',
+      data: {
+        employee
+      }
+    }).afterClosed().subscribe(x => {
+      console.log(x);
+    });
   }
 }

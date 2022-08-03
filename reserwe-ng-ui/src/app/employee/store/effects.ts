@@ -10,6 +10,7 @@ import {EmployeeApi} from '../api/employee-api';
 import {ToastrService} from 'ngx-toastr';
 import {SearchEmployeeCategories} from "../model/search-employee-categories.model";
 import {SearchEmployeeRequest} from "../model/search-employee-request.model";
+import {WorkPlannerExecutorWrapper} from "../model/work-planner.model";
 
 @Injectable()
 export class EmployeeEffects {
@@ -85,6 +86,21 @@ export class EmployeeEffects {
           console.log('Data', data);
           return of(
             EmployeeActions.searchEmployeesSuccess({searchResponse: data}),
+          );
+        }
+      )
+      ),
+    )));
+
+  addWorkPlannerEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(EEmployeeActions.ADD_WORK_PLANNER),
+    switchMap((props: { workPlanner: WorkPlannerExecutorWrapper }) => this.employeeApi.addWorkPlanner(props.workPlanner).pipe(
+      switchMap((data: any) => {
+          console.log('Data', data);
+          this.navigator.navigate(['/employee/list']);
+          this.notificationMessages.success('Successfully added work plan!');
+          return of(
+            EmployeeActions.addWorkPlannerSuccess({workPlanner: data}),
           );
         }
       )

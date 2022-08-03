@@ -8,6 +8,7 @@ import {Service} from '../model/service.model';
 import {SearchService} from '../model/search-service.model';
 import {SearchPriceList} from '../../employee/model/search-price-list.model';
 import {PriceList} from '../model/price-list.model';
+import {CheckoutPriceList} from "../model/checkout-price-list.model";
 
 @Injectable()
 export class ServiceApi {
@@ -82,5 +83,15 @@ export class ServiceApi {
         CompanyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a'
       }
     });
+  }
+
+  getPriceListsByServices(searchRequest: SearchPriceList): Observable<any> {
+    const url = `${this.RESERWE_SERVICE_API}/price-list/basic-services`;
+    return this.http.post(url, {...searchRequest, companyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a'},
+      {
+        headers: {
+          CompanyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a'
+        }
+      });
   }
 }

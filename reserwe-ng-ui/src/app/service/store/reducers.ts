@@ -1,11 +1,11 @@
 import {createReducer, on} from '@ngrx/store';
 import {INIT_SERVICE_STATE, ServiceState} from './state';
 import {
-  addServiceCategorySuccess,
+  addServiceCategorySuccess, getPriceListsByServicesSuccess, searchPriceLists,
   searchPriceListsSuccess,
   searchServiceCategoriesSuccess,
   searchServicesSuccess,
-  ServiceActions
+  ServiceActions, setSelectedServices
 } from './actions';
 
 const reducer = createReducer(
@@ -25,6 +25,14 @@ const reducer = createReducer(
   on(searchPriceListsSuccess, (state, {searchResponse}) => ({
     ...state,
     priceLists: searchResponse,
+  })),
+  on(setSelectedServices, (state, {services}) => ({
+    ...state,
+    selectedServices: services,
+  })),
+  on(getPriceListsByServicesSuccess, (state, {searchResponse}) => ({
+    ...state,
+    checkoutPriceLists: searchResponse
   })),
 );
 
