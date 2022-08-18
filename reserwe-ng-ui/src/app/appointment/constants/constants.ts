@@ -4,5 +4,5 @@ export enum EAppointmentActions {
   SEARCH_APPOINTMENTS = '[Appointment] Search Appointments',
   SEARCH_APPOINTMENTS_SUCCESS = '[Appointment] Search Appointments Success',
   GET_TIME_RANGES = '[Appointment] Get Time Ranges',
-  GET_TIME_RANGES_SUCCESS = '[Appointment] Get Time Ranges Success'
+  GET_TIME_RANGES_SUCCESS = '[Appointment] Get Time Ranges Success',
 }

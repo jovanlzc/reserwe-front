@@ -8,10 +8,16 @@ import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from '@a
 import {KeyValuePipe} from '@angular/common';
 import * as moment from 'moment';
 import {CheckoutTimeRangesRequest} from '../../../model/checkout-time-ranges.request.model';
-import {getTimeRanges} from '../../../store/actions';
+import {addAppointment, getTimeRanges} from '../../../store/actions';
 import {selectTimeRanges} from '../../../store/selectors';
-import {Appointment} from "../../../model/appointment.model";
-import {ServiceExecutorModel} from "../../../model/service-executor.model";
+import {Appointment} from '../../../model/appointment.model';
+import {ServiceExecutorModel} from '../../../model/service-executor.model';
+import {User} from '../../../../auth/model/user.model';
+import * as UsersSelectors from '../../../../employee/store/selectors';
+import * as UsersActions from '../../../../employee/store/actions';
+import {SearchUsersRequestModel} from "../../../../employee/model/search-users-request.model";
+import {EmployeeCategory} from "../../../../employee/model/employee-category.model";
+import {EmployeeCategoryEmployeeModel} from "../../../../employee/model/employee-category-employee.model";
 
 @Component({
   selector: 'app-checkout',
@@ -29,16 +35,21 @@ export class CheckoutComponent implements OnInit {
   formArrayIndex = -1;
   timeRanges$: Observable<string[]>;
   selectedTime: string;
+  users$: Observable<User[]>;
+  users: User[] = [];
 
   constructor(private store$: Store,
               private formBuilder: FormBuilder,
               private changeDetectorRef: ChangeDetectorRef,
               private keyvalue: KeyValuePipe) {
     this.timeRanges$ = this.store$.select(selectTimeRanges);
-  }
-
-  ngOnInit(): void {
-    this.initForm();
+    this.users$ = this.store$.select(UsersSelectors.getUsers);
+    this.store$.select(UsersSelectors.selectUsers).subscribe(users => {
+      if (users) {
+        this.users = users;
+        console.log('Users', users);
+      }
+    });
     this.checkoutPriceLists$ = this.store$.select(ServiceSelectors.selectCheckoutPricesList);
     this.store$.select(ServiceSelectors.selectCheckoutPricesList).subscribe(checkoutPriceLists => {
       if (checkoutPriceLists) {
@@ -60,6 +71,13 @@ export class CheckoutComponent implements OnInit {
         });
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.initForm();
+    const searchRequest: SearchUsersRequestModel = {};
+    this.store$.dispatch(UsersActions.searchUsers({searchRequest}));
+
     this.form.valueChanges.subscribe(value => {
       console.log('Forma', this.form.value);
       let allArrayFieldsPopulated = false;
@@ -94,7 +112,13 @@ export class CheckoutComponent implements OnInit {
   }
 
   initForm(): void {
-    this.form = this.formBuilder.group({formArray: this.formBuilder.array([]), date: ['', Validators.required]});
+    this.form = this.formBuilder.group(
+      {
+        formArray: this.formBuilder.array([]),
+        date: ['', Validators.required],
+        user: ''
+      }
+    );
   }
 
   getEmployee(service: Service): any {
@@ -138,11 +162,18 @@ export class CheckoutComponent implements OnInit {
   save(): void {
     const appointment: Appointment = {};
     const serviceExecutors: ServiceExecutorModel[] = [];
+    let duration = 0;
+    let price = 0;
     this.mapServicePriceLists.forEach(((value, key) => {
+        duration += key.duration;
         const priceList: CheckoutPriceList = value[this.indexes.get(key.id)];
+        price += priceList.amount;
+        const executorTypeExecutorsMap: Map<string, any> = new Map(Object.entries(priceList.executorTypesExecutors));
+        console.log('EtE', executorTypeExecutorsMap);
+        const executorTypeExecutorsIds: string[] = Array.from(executorTypeExecutorsMap.values()).flatMap(executorTypeExecutors => executorTypeExecutors).map(executorTypeExecutor => executorTypeExecutor.id);
         const serviceExecutor: ServiceExecutorModel = {
           companyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a',
-          executorTypeExecutorsIds: priceList.executorTypesExecutors,
+          executorTypeExecutorsIds,
           dateTime: moment(this.form.get('date').value).format('yyyy-MM-DD') + ' ' + this.selectedTime,
           priceListId: priceList.priceListId
         };
@@ -150,6 +181,12 @@ export class CheckoutComponent implements OnInit {
       }
     ));
     appointment.serviceExecutors = serviceExecutors;
-  //proveriti da li se vraca executorTypeExecutor ili cista mapa
+    appointment.duration = duration;
+    appointment.dateAndTime = moment(this.form.get('date').value).format('yyyy-MM-DD') + ' ' + this.selectedTime;
+    appointment.reservationPrice = price;
+    appointment.companyId = 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a';
+    appointment.userProfileId = this.form.controls.user.value;
+    this.store$.dispatch(addAppointment({appointment}));
+    // proveriti da li se vraca executorTypeExecutor ili cista mapa
   }
 }

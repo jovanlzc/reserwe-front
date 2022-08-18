@@ -11,6 +11,7 @@ import {ToastrService} from 'ngx-toastr';
 import {SearchEmployeeCategories} from "../model/search-employee-categories.model";
 import {SearchEmployeeRequest} from "../model/search-employee-request.model";
 import {WorkPlannerExecutorWrapper} from "../model/work-planner.model";
+import {SearchUsersRequestModel} from "../model/search-users-request.model";
 
 @Injectable()
 export class EmployeeEffects {
@@ -101,6 +102,19 @@ export class EmployeeEffects {
           this.notificationMessages.success('Successfully added work plan!');
           return of(
             EmployeeActions.addWorkPlannerSuccess({workPlanner: data}),
+          );
+        }
+      )
+      ),
+    )));
+
+  searchUsersEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(EEmployeeActions.SEARCH_USERS),
+    switchMap((props: { searchRequest: SearchUsersRequestModel }) => this.employeeApi.searchUsers(props.searchRequest).pipe(
+      switchMap((data: any) => {
+          console.log('Data', data);
+          return of(
+            EmployeeActions.searchUsersSuccess({searchResponse: data}),
           );
         }
       )

@@ -7,6 +7,7 @@ import {SearchEmployeeCategories} from '../model/search-employee-categories.mode
 import {Employee} from '../model/employee.model';
 import {SearchEmployeeRequest} from '../model/search-employee-request.model';
 import {WorkPlannerExecutorWrapper} from "../model/work-planner.model";
+import {SearchUsersRequestModel} from "../model/search-users-request.model";
 
 @Injectable()
 export class EmployeeApi {
@@ -72,5 +73,14 @@ export class EmployeeApi {
           CompanyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a'
         }
       });
+  }
+
+  searchUsers(searchRequest: SearchUsersRequestModel): Observable<any> {
+    const url = `${this.RESERWE_EMPLOYEE_API}/user/users`;
+    return this.http.get(url, {
+      headers: {
+        CompanyId: 'b75232d9-afd1-43ab-b716-fa3dd69a8d1a'
+      }
+    });
   }
 }

@@ -10,5 +10,7 @@ export enum EEmployeeActions {
     UPDATE_EMPLOYEE = '[Employee] Update Employee',
     UPDATE_EMPLOYEE_SUCCESS = '[Employee] Update Employee Success',
     ADD_WORK_PLANNER = '[Employee] Add Work Planner',
-    ADD_WORK_PLANNER_SUCCESS = '[Employee] Add Work Planner Success'
+    ADD_WORK_PLANNER_SUCCESS = '[Employee] Add Work Planner Success',
+    SEARCH_USERS = '[Employee] Search Users',
+    SEARCH_USERS_SUCCESS = '[Employee] Search Users Success',
 }

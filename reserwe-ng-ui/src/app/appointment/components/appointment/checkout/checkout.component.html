@@ -4,18 +4,26 @@
     <form [formGroup]="form">
       <div class="side-left">
         <div class="checkout-employees">
+          <mat-form-field [appearance]="'outline'" class="employee-mat-form-field">
+            <mat-label>Choose user</mat-label>
+            <mat-select [formControl]="form.controls.user" required>
+              <mat-option *ngFor="let option of users"
+                          [value]="option.id">{{option.firstName + ' ' + option.lastName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
           <mat-list *ngFor="let item of mapServicePriceLists | keyvalue; let i = index;">
             <mat-list-item style="border-bottom: 1px solid #e7e6ef; height: 100%; width: 90%; margin-left: 5%">
               <div class="employees-block">
                 <app-details-service [service]="item.key" [disableChecked]="true"></app-details-service>
                 <div class="employees-wrapper">
                   <div class="employee-select" formArrayName="formArray">
-                    <div *ngFor="let employee of getEmployee(item.key) | keyvalue;let j =index;">
+                    <div *ngFor="let employee of getEmployee(item.key) | keyvalue; let j =index;">
                       <mat-form-field [appearance]="'outline'" class="employee-mat-form-field">
                         <mat-label>{{extractNameFromJson(employee.key)}}</mat-label>
                         <mat-select [formControl]="getIndex(i, j)" required>
                           <mat-option *ngFor="let option of employee.value"
-                                      [value]="option.username">{{option.firstName + ' ' + option.lastName}}
+                                      [value]="option.executor.username">{{option.executor.firstName + ' ' + option.executor.lastName}}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>

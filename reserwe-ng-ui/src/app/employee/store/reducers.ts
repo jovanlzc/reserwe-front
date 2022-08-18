@@ -3,7 +3,7 @@ import {EmployeeState, INIT_EMPLOYEE_STATE} from '../../employee/store/state';
 import {
   addEmployeeCategorySuccess,
   EmployeeActions,
-  searchEmployeeCategoriesSuccess, searchEmployeesSuccess
+  searchEmployeeCategoriesSuccess, searchEmployeesSuccess, searchUsersSuccess
 } from '../../employee/store/actions';
 
 const reducer = createReducer(
@@ -19,6 +19,10 @@ const reducer = createReducer(
   on(searchEmployeesSuccess, (state, {searchResponse}) => ({
     ...state,
     employees: searchResponse,
+  })),
+  on(searchUsersSuccess, (state, {searchResponse}) => ({
+    ...state,
+    users: searchResponse,
   })),
 );
 
