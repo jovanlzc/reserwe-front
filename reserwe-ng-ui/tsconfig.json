@@ -14,7 +14,12 @@
     "lib": [
       "es2019",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@auth-lib": [
+        "./node_modules/@plusplus-ngo/ngo-auth-lib"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
